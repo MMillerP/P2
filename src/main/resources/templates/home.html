@@ -1,0 +1,78 @@
+<html>
+<head>
+    <title>Customer Database</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-spacing: 0px;
+        }
+        th, td {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th><form action = "/sortID">
+            <input type = "submit" value = "ID"></form></th>
+        <th><form action = "/sortName">
+            <input type = "submit" value = "Name"></form></th>
+        <th>Description</th>
+        <th>Image</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="cust : ${custList}">
+        <td th:text="${cust.id}"></td>
+        <td th:text="${cust.name}"></td>
+        <td th:text="${cust.desc}"></td>
+        <td>Filler</td>
+        <td><form action = "/editRedirectCustomer" method = "GET">
+            <input type="text"
+                   name="search"
+                   id="editRedirect"
+                   th:value="${cust.id}"
+                   style="display:none"
+            />
+            <input type = "submit" value = "X"/>
+        </form></td>
+        <td><form action = "/deleteCustomer" method = "GET">
+            <input type = "text"
+                   name = "deleteCustomer"
+                   id = "deleteCustomer"
+                   th:value = "${cust.id}"
+                   style="display:none"
+            >
+            <input type = "submit" value = "X"/>
+        </form></td>
+    </tr>
+    </tbody>
+</table>
+<br />
+<h2>Add Customer</h2>
+<form action="/addCustomer" method="POST">
+    Name
+    <br />
+    <input type="text" id="name" name="Name" />
+    <br />
+    Description
+    <br />
+    <textarea id="desc" name="desc" rows="5" cols="70"></textarea>
+    <br />
+    <input type="submit" value = "Enter Customer"/>
+    <br />
+</form>
+<h2>Search for Customers</h2>
+<form action="/search" method="GET">
+    <input type="text"
+           name="search"
+           id="search"
+           th:value="${search}" />
+    <input type="submit" value="Search" />
+</form>
+</body>
+</html>

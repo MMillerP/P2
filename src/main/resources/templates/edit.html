@@ -1,0 +1,30 @@
+<html>
+<head>
+    <title>Customer Database</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-spacing: 0px;
+        }
+        th, td {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+<h2>Edit Customer</h2>
+<form action="/editCustomer" method="get" >
+    <input style="display:none" th:value = "${search}" type = "text" id = "id" name = "id"/>
+    Name
+    <br />
+    <input type="text" id="name" name="name" />
+    <br />
+    Description
+    <br />
+    <textarea id="desc" name="desc" rows="5" cols="70"></textarea>
+    <br />
+    <input type="submit" value = "Update Customer"/>
+
+</form>
+</body>
+</html>
